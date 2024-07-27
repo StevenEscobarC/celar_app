@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg: ^2.0.5
+  hand_signature: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -16,4 +18,8 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
+  generate: true
   uses-material-design: true
+  assets:
+    - assets/
+    - assets/images/

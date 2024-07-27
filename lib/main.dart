@@ -1,3 +1,5 @@
+import 'package:celar_app/register/register_page.dart';
+import 'package:celar_app/welcome/welcome_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,12 +11,16 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const Scaffold(
+        body: WelcomePage(),
       ),
+      initialRoute: "/welcome",
+      routes: {
+        "/register": (_) => const RegisterPage(),
+        "/welcome": (_) => const WelcomePage(),
+      },
     );
   }
 }
