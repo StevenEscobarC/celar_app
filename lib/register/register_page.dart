@@ -300,7 +300,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 ),
                               ),
                               onPressed: () {
-                                Navigator.pushNamed(context, '/register');
+                                Navigator.pushNamed(context, '/home');
                               },
                               child: Text(
                                 'REGISTRAR',
