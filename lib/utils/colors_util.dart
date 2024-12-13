@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
 class ColorsUtil {
-  static Color defaultCelarColorPrimary =
-      const Color.fromARGB(255, 241, 97, 54);
+  static Color defaultIndesegColorPrimary =
+      Color.fromARGB(255, 47, 150, 16);
 }

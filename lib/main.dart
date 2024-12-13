@@ -1,5 +1,8 @@
+import 'package:celar_app/courses/courses.dart';
 import 'package:celar_app/generate_register/generate_register_page.dart';
 import 'package:celar_app/home/home_page.dart';
+import 'package:celar_app/login/login_page.dart';
+import 'package:celar_app/matricula/matricula_page.dart';
 import 'package:celar_app/register/register_page.dart';
 import 'package:celar_app/registration/registration_page.dart';
 import 'package:celar_app/report/report_page.dart';
@@ -23,11 +26,14 @@ class MainApp extends StatelessWidget {
       initialRoute: "/welcome",
       routes: {
         "/register": (_) => const RegisterPage(),
+        "/login": (_) => const LoginPage(),
         "/welcome": (_) => const WelcomePage(),
         "/home": (_) => const HomePage(),
         "/registration-list": (_) => const RegistrationPage(),
         "/report": (_) => const ReportPage(),
         "/generate-register": (_) => const GenerateRegisterPage(),
+        "/courses": (_) => const CoursesPage(),
+        "/matricula": (_) => const MatriculaPage(),
       },
     );
   }

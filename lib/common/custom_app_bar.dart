@@ -1,7 +1,9 @@
 import 'package:celar_app/utils/responsive_util.dart';
 import 'package:flutter/material.dart';
+import 'package:celar_app/utils/colors_util.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String name;
   final String id;
   final String imageUrl;
@@ -14,9 +16,32 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }) : super(key: key);
 
   @override
+  _CustomAppBarState createState() => _CustomAppBarState();
+
+  @override
+  Size get preferredSize => Size.fromHeight(ResponsiveUtil.px(350));
+}
+
+class _CustomAppBarState extends State<CustomAppBar> {
+  String cedula = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCedula();
+  }
+
+  Future<void> _loadCedula() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      cedula = prefs.getString('cedula') ?? '';
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       flexibleSpace: SafeArea(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -27,7 +52,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 SizedBox(
                   width: ResponsiveUtil.wp(35, context),
                   child: Image.asset(
-                    'assets/images/logoCelar.png', // Reemplaza esto con la ruta correcta de tu logo
+                    'assets/images/indeseg.png',
                     height: ResponsiveUtil.hp(15, context),
                   ),
                 ),
@@ -35,7 +60,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 SizedBox(
                   width: ResponsiveUtil.wp(35, context),
                   child: Image.asset(
-                    'assets/images/alerta.png', // Reemplaza esto con la ruta correcta de tu logo
+                    'assets/images/ayuda.png',
                     height: ResponsiveUtil.hp(8, context),
                   ),
                 ),
@@ -47,7 +72,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 children: [
                   CircleAvatar(
                     radius: ResponsiveUtil.hp(8, context),
-                    backgroundImage: NetworkImage(imageUrl),
+                    // backgroundImage: NetworkImage(widget.imageUrl),
                     child: Align(
                       alignment: Alignment.bottomRight,
                       child: CircleAvatar(
@@ -56,20 +81,25 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                         child: Icon(
                           Icons.edit,
                           size: ResponsiveUtil.px(40),
-                          color: Colors.deepOrangeAccent,
+                          color: ColorsUtil.defaultIndesegColorPrimary,
                         ),
                       ),
                     ),
                   ),
                   SizedBox(height: ResponsiveUtil.hp(5, context)),
                   Text(
-                    name,
-                    style: TextStyle(color: Colors.white, fontSize: 18),
+                    widget.name,
+                    style: TextStyle(
+                      color: ColorsUtil.defaultIndesegColorPrimary,
+                      fontSize: 18,
+                    ),
                   ),
                   Text(
-                    id,
-                    style:
-                        TextStyle(color: Colors.deepOrangeAccent, fontSize: 16),
+                    cedula,
+                    style: TextStyle(
+                      color: ColorsUtil.defaultIndesegColorPrimary,
+                      fontSize: 16,
+                    ),
                   ),
                 ],
               ),
@@ -79,7 +109,4 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
     );
   }
-
-  @override
-  Size get preferredSize => Size.fromHeight(ResponsiveUtil.px(350));
 }
