@@ -3,6 +3,7 @@ import 'package:celar_app/courses/courses_controller.dart';
 import 'package:celar_app/models/courses.dart';
 import 'package:flutter/material.dart';
 
+/// Página para mostrar los cursos disponibles y permitir la inscripción.
 class CoursesPage extends StatefulWidget {
   const CoursesPage({super.key});
 
@@ -68,6 +69,7 @@ class _CoursesPageState extends State<CoursesPage> {
                                 title: Text(course.courseName),
                                 subtitle: Text("ID: ${course.courseId}"),
                                 trailing: ElevatedButton(
+                                  // Cambiar esta palabra por la que se usa en el servidor
                                   onPressed: course.state == "pre_registered"
                                       ? () async {
                                           Navigator.pushNamed(

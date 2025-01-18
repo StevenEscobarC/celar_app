@@ -1,13 +1,15 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-
 import 'package:celar_app/models/courses.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// Controlador para manejar las peticiones relacionadas con los cursos.
 class CoursesController {
   late SharedPreferences prefs;
 
+  /// Método para obtener la lista de cursos.
+  ///
+  /// Retorna una lista de objetos [CourseData].
   Future<List<CourseData>> list() async {
     late ApiResponse model;
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -35,6 +37,11 @@ class CoursesController {
     return model.data.certificates;
   }
 
+  /// Método para preinscribirse en un curso.
+  ///
+  /// [courseId] es el ID del curso al que se desea preinscribir.
+  ///
+  /// Retorna una lista de objetos [CourseData].
   Future<List<CourseData>> preregister(courseId) async {
     prefs = await SharedPreferences.getInstance();
     final body = {

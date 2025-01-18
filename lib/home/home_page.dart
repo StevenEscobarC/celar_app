@@ -3,8 +3,8 @@ import 'package:celar_app/common/custom_app_bar.dart';
 import 'package:celar_app/utils/responsive_util.dart';
 import 'package:flutter/material.dart';
 import 'package:celar_app/utils/colors_util.dart';
-import 'package:celar_app/home/web_view_page.dart';
 
+/// Página principal de la aplicación.
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -93,35 +93,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildIconButton(IconData icon, String label, void Function()? onTap) {
-    return Column(
-      children: [
-        GestureDetector(
-          onTap: onTap,
-          child: CircleAvatar(
-            radius: ResponsiveUtil.hp(6, context),
-            backgroundColor: ColorsUtil.defaultIndesegColorPrimary,
-            child:
-                Icon(icon, size: ResponsiveUtil.px(100), color: Colors.white),
-          ),
-        ),
-        const SizedBox(height: 8),
-        SizedBox(
-          height: ResponsiveUtil.hp(5, context),
-          width: ResponsiveUtil.wp(30, context),
-          child: Text(
-            label,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: ResponsiveUtil.px(20),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
+  /// Método para construir los botones del home.
   Widget _buildImageButton(
       String imagePath, String label, void Function()? onTap) {
     return Column(

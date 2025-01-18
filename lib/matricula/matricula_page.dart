@@ -9,6 +9,7 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// Página para matricular un curso.
 class MatriculaPage extends StatefulWidget {
   const MatriculaPage({super.key});
 
@@ -19,7 +20,6 @@ class MatriculaPage extends StatefulWidget {
 class _MatriculaPageState extends State<MatriculaPage> {
   String cedula = '';
   final TextEditingController codigoController = TextEditingController();
-  // final TextEditingController cuotasController = TextEditingController();
   bool autorizaDescuento = false;
   String dropdownValue = 'Correo electrónico';
   int cuotas = 1;
@@ -35,6 +35,7 @@ class _MatriculaPageState extends State<MatriculaPage> {
     super.dispose();
   }
 
+  /// Método para cargar la cédula del usuario.
   Future<void> _loadCedula() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -106,6 +107,7 @@ class _MatriculaPageState extends State<MatriculaPage> {
                       ),
 
                       const SizedBox(width: 38),
+                      // Botón para reenviar el código OTP
                       ElevatedButton(
                         onPressed: () async {
                           var headers = {
@@ -215,6 +217,7 @@ class _MatriculaPageState extends State<MatriculaPage> {
                     ],
                   ),
                   const SizedBox(height: 16),
+                  // Botón para Matricular
                   ElevatedButton(
                     onPressed: () async {
                       var headers = {

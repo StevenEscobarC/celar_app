@@ -3,6 +3,7 @@ import 'package:celar_app/utils/responsive_util.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// Página de bienvenida.
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
 
@@ -54,9 +55,6 @@ class _WelcomePageState extends State<WelcomePage> {
                         ),
                       ),
                       onPressed: () async {
-                        // prefs = await SharedPreferences.getInstance();
-                        // prefs.setString('cedula', "72041474");
-                        // Navigator.pushNamed(context, '/home');
                         Navigator.pushNamed(context, '/login');
                       },
                       child: Text(

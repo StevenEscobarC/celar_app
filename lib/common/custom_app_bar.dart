@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:celar_app/utils/colors_util.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// Widget personalizado de AppBar que incluye información del usuario.
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String name;
   final String id;
@@ -31,6 +32,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
     _loadCedula();
   }
 
+  /// Carga el valor de 'cedula' desde las preferencias compartidas.
   Future<void> _loadCedula() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {

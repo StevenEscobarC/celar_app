@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:hand_signature/signature.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// Página para registrar un usuario.
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -49,6 +50,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+  /// Método para tomar la foto.
   Future<void> _takePhoto() async {
     final XFile? pickedFile =
         await _picker.pickImage(source: ImageSource.camera);
@@ -59,6 +61,7 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
+  /// Método para registrarse.
   Future<void> _uploadPhoto() async {
     if (_imageFile == null) {
       ScaffoldMessenger.of(context).showSnackBar(

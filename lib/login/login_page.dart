@@ -12,6 +12,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// Página de inicio de sesión.
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -41,6 +42,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  /// Método para tomar una foto.
   Future<void> _takePhoto() async {
     final XFile? pickedFile =
         await _picker.pickImage(source: ImageSource.camera);
@@ -51,6 +53,7 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  /// Método para realizar el login.
   Future<void> _login() async {
     if (_imageFile == null) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -82,10 +85,9 @@ class _LoginPageState extends State<LoginPage> {
         prefs.setString('cedula', cedulaController.text);
         Navigator.pushReplacementNamed(context, '/home');
       } else {
-        // Navigator.pushNamed(context, '/home');
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('${body['error']}' ?? 'Error desconocido'),
+            content: Text('${body['error']}'),
           ),
         );
       }

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:io';
 import 'package:celar_app/common/custom_app_bar.dart';
@@ -8,6 +10,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// Página para listar los cursos y generar certificados.
 class GenerateRegisterPage extends StatefulWidget {
   const GenerateRegisterPage({super.key});
 
@@ -108,7 +111,7 @@ class _GenerateRegisterPageState extends State<GenerateRegisterPage> {
     );
   }
 
-  // Simulación de función para obtener el certificado en base64 (debería reemplazarse con una llamada HTTP real)
+  /// Método para obtener el certificado en base64.
   Future<String> fetchCertificateBase64(String id) async {
     var headers = {
       'Content-Type': 'application/json',
@@ -136,6 +139,7 @@ class _GenerateRegisterPageState extends State<GenerateRegisterPage> {
     }
   }
 
+  /// Método para guardar el certificado en el almacenamiento del dispositivo.
   Future<void> saveCertificate(
       String base64Pdf, String filename) async {
     var status = await Permission.manageExternalStorage.request();
@@ -157,11 +161,11 @@ class _GenerateRegisterPageState extends State<GenerateRegisterPage> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text("Éxito"),
+              title: const Text("Éxito"),
               content: Text("Certificado guardado en: ${file.path}"),
               actions: [
                 TextButton(
-                  child: Text("OK"),
+                  child: const Text("OK"),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -176,12 +180,12 @@ class _GenerateRegisterPageState extends State<GenerateRegisterPage> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text("Error"),
+              title: const Text("Error"),
               content:
-                  Text("No se pudo guardar el certificado. Intenta de nuevo."),
+                  const Text("No se pudo guardar el certificado. Intenta de nuevo."),
               actions: [
                 TextButton(
-                  child: Text("OK"),
+                  child: const Text("OK"),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -197,12 +201,12 @@ class _GenerateRegisterPageState extends State<GenerateRegisterPage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("Permiso necesario"),
-            content: Text(
+            title: const Text("Permiso necesario"),
+            content: const Text(
                 "El permiso de almacenamiento es necesario para guardar el certificado. Por favor habilítalo en la configuración."),
             actions: [
               TextButton(
-                child: Text("Abrir configuración"),
+                child: const Text("Abrir configuración"),
                 onPressed: () {
                   openAppSettings();
                   Navigator.of(context).pop();
@@ -215,7 +219,7 @@ class _GenerateRegisterPageState extends State<GenerateRegisterPage> {
     } else {
       // Notificar si el permiso fue denegado temporalmente
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text(
               "Permiso de almacenamiento denegado. No se puede guardar el certificado."),
         ),
